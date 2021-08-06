@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tian.springboot_url.mapper.StudentMapper">
+
+    <select id="list" resultType="com.tian.springboot_url.pojo.Student">
+        select * from student
+        <if test="name !=null"></if>
+    </select>
+
+    <!--select * from student where id = ?,name = ?-->
+    <!--根据作者名字和博客名字来查询博客！如果作者名字为空，那么只根据博客名字查询，反之，则根据作者名来查询-->
+    <select id="login" resultType="com.tian.springboot_url.pojo.Student">
+        select * from student
+        <where>
+            <if
+                    test="id != null">id = #{id}
+            </if>
+            <if
+                    test="name != null"> and name = #{name}
+            </if>
+        </where>
+    </select>
+
+</mapper>
