@@ -2,7 +2,9 @@ package com.tian.springboot_url.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -15,6 +17,7 @@ import java.util.Date;
  * Copyright: Copyright (c) 2021
  * Modified By: SmartDragon
  */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,7 +28,10 @@ public class Student {
     private int age;
     private String sex;
     private String place;
-    private Date creat_time;
-    private Date updata_time;
+    @DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm-ss")
+    private Date creat_time;//创建时间
+    @DateTimeFormat(pattern = "yyyy-MM-dd-HH-mm-ss")
+    private Date updata_time;//更新时间
+
 
 }

@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tian.springboot_url.mapper.StudentMapper">
 
-    <select id="list" resultType="com.tian.springboot_url.pojo.Student">
+    <!--<select id="list" resultType="com.tian.springboot_url.pojo.Student">
         select * from student
         <if test="name !=null"></if>
-    </select>
+    </select>-->
 
     <!--select * from student where id = ?,name = ?-->
     <!--根据作者名字和博客名字来查询博客！如果作者名字为空，那么只根据博客名字查询，反之，则根据作者名来查询-->
@@ -21,6 +21,16 @@
                     test="name != null"> and name = #{name}
             </if>
         </where>
+    </select>
+
+    <sql id="Student_SQL">
+        id,name,age,sex,place,creat_time,updata_time
+    </sql>
+
+    <select id="list" resultType="com.tian.springboot_url.pojo.Student">
+        select
+        <include refid="Student_SQL"></include>
+        from student order by age desc
     </select>
 
 </mapper>
